@@ -54,7 +54,9 @@ if(isset($_GET['code'])) {
 	}
 
 	// Exchange the auth code for a token
+	// initialisation de la session
 	$ch = curl_init($tokenURL);
+	// configuration des options
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
 		'grant_type' => 'authorization_code',
@@ -63,6 +65,7 @@ if(isset($_GET['code'])) {
 		'redirect_uri' => $baseURL,
 		'code' => $_GET['code']
 	]));
+	// exécution de la session
 	$response = curl_exec($ch);
 	$data = json_decode($response, true);
 
@@ -101,6 +104,9 @@ if(!isset($_GET['action'])) {
 		echo '<h3>Logged In</h3>';
 		echo '<p>User ID: '.$_SESSION['user_id'].'</p>';
 		echo '<p>Email: '.$_SESSION['email'].'</p>';
+		if (!empty($_SESSION['hd'])) {
+			echo '<h3>++++++++++++++++++++++++++++++++++++++++++++++</h3>';
+		}
 		echo '<p><a href="?action=logout">Log Out</a></p>';
 
 		echo '<h3>ID Token</h3>';
@@ -110,10 +116,13 @@ if(!isset($_GET['action'])) {
 
 		echo '<h3>User Info</h3>';
 		echo '<pre>';
+		// initialisation de la session
 		$ch = curl_init('https://www.googleapis.com/oauth2/v3/userinfo');
+		// configuration des options
 		curl_setopt($ch, CURLOPT_HTTPHEADER, [
 			'Authorization: Bearer '.$_SESSION['access_token']
 		]);
+		// exécution de la session
 		curl_exec($ch);
 		echo '</pre>';
 
