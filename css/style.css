@@ -1,0 +1,38 @@
+.heading {
+	margin-top: 10px;
+	text-align: center;
+	text-shadow: 1px 1px 3px #23203b;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 3em;
+	font-weight: 600;
+}
+
+h2.headertekst {
+	text-align: center;
+}
+
+.state {
+	text-align: center;
+	text-shadow: 1px 1px 1px #23203b;
+	/*color: rgba(255, 255, 255, 0.7);*/
+}
+
+div.center-cropped img {
+    width: 10%;
+    display: block;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottom-logout {
+    position:fixed;
+    bottom:10px;
+    right:0px;
+    height:20px;
+    text-align: center;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    width:100px;
+    /* background-color:#cf8; */
+}
